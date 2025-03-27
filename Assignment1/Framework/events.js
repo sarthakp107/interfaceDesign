@@ -66,12 +66,16 @@ createApp({
                 return matchesEventID && matchesEventName && matchesDuration && matchesCategory;
             });
         });
+        const filteredEventsByCategory = computed(() => {
+            return events.value.filter(event => event.category === state.category);
+        });
 
         return {
             state,
             events,
             filters,
             filteredEvents,
+            filteredEventsByCategory,
             submitForm
         };
     }

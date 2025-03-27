@@ -235,7 +235,7 @@
                     <div class="">
                         <label for="event">Event Name:</label>
                         <select id="event" v-model="state.event" required>
-                            <option v-for="event in filteredEvents" :key="event.eventid" :value="event.eventname">
+                            <option v-for="event in filteredEventsByCategory" :key="event.eventid" :value="event.eventname">
                                 {{ event.eventname }}
                             </option>
                         </select>
