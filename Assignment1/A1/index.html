@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Event Management System</title>
     <script src="../Framework/js/vue.js"></script>
     <link rel="stylesheet" href="../Framework/css/bootstrap.css">
     <script src="../Framework/js/bootstrap.js"
@@ -182,65 +182,72 @@
         <!--Registration form-->
 
         <!-- <form @submit.prevent="submitForm"> -->
-        <form @submit.prevent="submitForm">
-            <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" v-model="state.username" required />
-            </div>
-
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" v-model="state.password" required />
-            </div>
-
-            <div>
-                <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" id="confirmPassword" v-model="state.confirmPassword" required />
-                <p v-if="state.password && state.confirmPassword && state.password !== state.confirmPassword"
-                    class="error-message">
-                    Passwords do not match!
-                </p>
-            </div>
-
-            <div>
-                <label>Event Category:</label>
-                <label>
-                    <input type="radio" v-model="state.category" value="Business" /> Business
-                </label>
-                <label>
-                    <input type="radio" v-model="state.category" value="Technology" /> Tech
-                </label>
-                <label>
-                    <input type="radio" v-model="state.category" value="Marketing" /> Marketing
-                </label>
-                <label>
-                    <input type="radio" v-model="state.category" value="Finance" /> Finance
-                </label>
-            </div>
-
-            <div>
-                <label for="event">Event Name:</label>
-                <select id="event" v-model="state.event" required>
-                    <option v-for="event in filteredEvents" :key="event.eventid" :value="event.eventname">
-                        {{ event.eventname }}
-                    </option>
-                </select>
-            </div>
-
-            <div>
-                <button type="submit">Submit</button>
-            </div>
-        </form>
 
         <p v-if="state.submitted" style="color: green;">Form submitted successfully!</p>
 
         <!-- Summary Message -->
-        <div v-if="state.submitted">
-            <h3>Registration Summary:</h3>
-            <p><strong>Username:</strong> {{ state.username }}</p>
-            <p><strong>Selected Category:</strong> {{ state.category }}</p>
-            <p><strong>Selected Event:</strong> {{ state.event }}</p>
-        </div>
+            <div v-if="state.submitted">
+                <h3>Registration Summary:</h3>
+                <p><strong>Username:</strong> {{ state.username }}</p>
+                <p><strong>Selected Category:</strong> {{ state.category }}</p>
+                <p><strong>Selected Event:</strong> {{ state.event }}</p>
+            </div>
+            <div class="container mt-5 mb-10">
+                <form @submit.prevent="submitForm" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" v-model="state.username" class="form-control" required />
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" v-model="state.password" class="form-control" required />
+                    </div>
+            
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" v-model="state.confirmPassword" class="form-control" required />
+                        <p v-if="state.password && state.confirmPassword && state.password !== state.confirmPassword" class="text-danger">
+                            Passwords do not match!
+                        </p>
+                    </div>
+            
+                    <div class="form-group">
+                        <label>Event Category:</label><br />
+                        <div class="form-check form-check-inline">
+                            <input type="radio" v-model="state.category" value="Business" class="form-check-input" id="categoryBusiness" />
+                            <label class="form-check-label" for="categoryBusiness">Business</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" v-model="state.category" value="Technology" class="form-check-input" id="categoryTech" />
+                            <label class="form-check-label" for="categoryTech">Tech</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" v-model="state.category" value="Marketing" class="form-check-input" id="categoryMarketing" />
+                            <label class="form-check-label" for="categoryMarketing">Marketing</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" v-model="state.category" value="Finance" class="form-check-input" id="categoryFinance" />
+                            <label class="form-check-label" for="categoryFinance">Finance</label>
+                        </div>
+                    </div>
+            
+                    <div class="">
+                        <label for="event">Event Name:</label>
+                        <select id="event" v-model="state.event" required>
+                            <option v-for="event in filteredEvents" :key="event.eventid" :value="event.eventname">
+                                {{ event.eventname }}
+                            </option>
+                        </select>
+                    </div>
+            
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        
 
 
 
